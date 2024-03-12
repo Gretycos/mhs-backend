@@ -1,0 +1,86 @@
+server:
+  port: 8081
+  compression:
+    enabled: true
+    mime-types: application/json
+  tomcat:
+    # idle-timeout 不可设置 默认是60s
+    connection-timeout: 20000 # 请求握手超时时间
+    keep-alive-timeout: 600000 # keep-alive请求断开时间
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mhs_user_service?useUnicode=true&serverTimezone=UTC&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 10 # 启动时连接数 不设置时与maximum-pool-size相同
+      maximum-pool-size: 30
+      connection-timeout: 30000 # 创建连接等待时间
+      max-lifetime: 600000 # 活跃最长时间，比数据库允许最长时间要短
+      idle-timeout: 90000 # 空闲最长时间，超过这个时间并且比min值大，会被踢出线程池
+      keepalive-time: 60000 # 心跳时间，防止跟数据库断开连接
+
+  cloud:
+    openfeign:
+      compression:
+        request:
+          enabled: true
+          mime-types: application/json
+        response:
+          enabled: true
+      client:
+        config:
+          default:
+            logger-level: BASIC
+      httpclient:
+        hc5:
+          enabled: true # 开启httpclient5
+        max-connections: 200
+        max-connections-per-route: 50
+        time-to-live: 180 # 连接生存时间
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: /
+    # 生产者确认功能
+    publisher-confirm-type: correlated # 异步回调
+    publisher-returns: true
+    template:
+      mandatory: true
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      password: 123456
+      connect-timeout: 5000ms
+      timeout: 300s
+      client-type: lettuce
+
+#mybatis:
+#  # mapper映射文件位置
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  configuration:
+#    map-underscore-to-camel-case: true
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace: ""
+      group: DEFAULT_GROUP
+      application: seata-tc-server
+      username:
+      password:
+  tx-service-group: seata-cmall-user # 事务组名称
+  service:
+    vgroup-mapping:
+      seata-cmall-user: default
+#  data-source-proxy-mode: XA # 默认AT

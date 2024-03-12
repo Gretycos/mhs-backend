@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/feign-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/feign-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/appointment-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/appointment-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/management-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/management-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/med-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/med-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/prescription-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/prescription-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
