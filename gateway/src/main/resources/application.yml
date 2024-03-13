@@ -1,0 +1,60 @@
+server:
+  port: 10010
+  compression:
+    enabled: true
+    mime-types: application/json
+  netty:
+    idle-timeout: 600000 # 空闲时间
+    connection-timeout: 30000 # 握手超时时间
+    max-keep-alive-requests: 500
+
+spring:
+  main:
+    web-application-type: reactive
+
+  application:
+    name: gateway
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      database: 0
+      password: 123456
+      connect-timeout: 5000ms
+      timeout: 5000ms
+      client-type: lettuce
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        ip-type: IPv4
+
+    gateway:
+      httpclient:
+        pool:
+          max-idle-time: 180000
+        response-timeout: 20000
+      routes:
+        - id: user-service # 路由标识，唯一，与微服务名称相同，否则在注册中心发现不了
+          uri: lb://user-service # loadbalancer://路由目标地址
+          predicates: # 路由断言，判断请求符合的规则
+            - Path=/api/user/**,/admin/user/**
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://127.0.0.1:8001" # 好像没用
+              - "http://localhost:8001"
+              - "http://localhost:8002"
+            allowedMethods:
+              - "GET"
+              - "POST"
+              - "DELETE"
+              - "PUT"
+              - "OPTIONS"
+            allowedHeaders: "*"
+            allowCredentials: true # 是否允许携带cookies
+            maxAge: 360000 # 跨域检验有效期
