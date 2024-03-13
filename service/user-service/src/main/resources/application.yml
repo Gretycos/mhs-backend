@@ -79,8 +79,8 @@ seata:
       application: seata-tc-server
       username:
       password:
-  tx-service-group: seata-cmall-user # 事务组名称
+  tx-service-group: seata-mhs-user # 事务组名称
   service:
     vgroup-mapping:
-      seata-cmall-user: default
+      seata-mhs-user: default
 #  data-source-proxy-mode: XA # 默认AT
