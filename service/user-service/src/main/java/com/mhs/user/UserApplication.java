@@ -13,7 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 //@EnableFeignClients(clients = xxxClient.class)
 @MapperScan({
-        "com.mhs.user.mapper"
+        "com.mhs.user.mapper",
+        "com.mhs.admin.user.mapper"
 })
 //@ComponentScan("com.mhs.*")
 @SpringBootApplication

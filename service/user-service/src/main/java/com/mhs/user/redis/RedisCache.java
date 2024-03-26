@@ -17,15 +17,16 @@ public class RedisCache {
     public RedisTemplate redisTemplate;
 
     /**
-     * 设置redis键值对
+     * 设置redis集合
      *
      * @param key      redis键
      * @param value    redis值
      * @param timeout  过期时间
      * @param timeUnit 时间单位
      */
-    public <T> void setCacheObject(final String key, final T value, final Long timeout, final TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key, value, timeout, timeUnit);
+    public <T> void setSetObject(final String key, final T value, final Long timeout, final TimeUnit timeUnit) {
+        redisTemplate.opsForSet().add(key, value);
+        redisTemplate.expire(key, timeout, timeUnit);
     }
 
     /**
@@ -45,7 +46,7 @@ public class RedisCache {
      * @param key redis键
      * @return boolean
      */
-    public boolean deleteObject(final String key) {
-        return redisTemplate.delete(key);
+    public boolean deleteObject(final String key, final String value) {
+        return redisTemplate.opsForSet().remove(key, value) > 0;
     }
 }
