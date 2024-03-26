@@ -5,6 +5,7 @@ import com.mhs.common.util.Result;
 import com.mhs.common.util.ResultGenerator;
 import com.mhs.user.service.IPatientLoginService;
 import com.mhs.user.web.param.UserLoginParam;
+import com.mhs.user.web.param.UserLogoutParam;
 import com.mhs.user.web.vo.LoginVO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -35,5 +36,11 @@ public class PatientLoginController {
             return ResultGenerator.genSuccessResult(loginVO);
         }
         return ResultGenerator.genFailResult(UserServiceResultEnum.LOGIN_ERROR.getResult());
+    }
+
+    @PostMapping("/logout")
+    public Result logout(@RequestBody @Valid UserLogoutParam userLogoutParam) {
+        patientLoginService.logout(userLogoutParam.getUserId(), userLogoutParam.getToken());
+        return ResultGenerator.genSuccessResult();
     }
 }
